@@ -1,26 +1,21 @@
-var lastRun;
-	
 module.exports = function(methodToRun, timeout)
 {
 	try
 	{
-		
-		if (lastRun == null)
+	    console.log('trying.')
+		if (this.lastRun == null)
 		{
-			lastRun = Date.now();
 
 			console.log('No previous runs.');
 		} 
 		else
 		{
-			var msSinceLastRun = Date.now() - lastRun;
-			console.log('last ran ' + (msSinceLastRun) + 'ms ago at ' + new Date(lastRun) + '.');
+			var msSinceLastRun = Date.now() - this.lastRun;
+			console.log('last ran ' + (msSinceLastRun) + 'ms ago at ' + new Date(this.lastRun) + '.');
 			if (msSinceLastRun < timeout)
 			{
 				return null;
 			}
-			
-			lastRun = Date.now();
 		}
 
 		setTimeout(methodToRun, timeout);
@@ -29,5 +24,7 @@ module.exports = function(methodToRun, timeout)
 	{
 		console.log('error: ' + err);
 	}
+	
+	this.lastRun = Date.now();
 	return null;
-}
+ } 

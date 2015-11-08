@@ -8,7 +8,7 @@ describe('debounce', function() {
       assert(new Date() - now >= 10);
       done();
     }, 10);
-    debounced;
+    debounced();
   });
 
   it("won't execute more than once within the threshold", function(done) {
@@ -16,9 +16,9 @@ describe('debounce', function() {
     var debounced = debounce(function() {
       called++;
     }, 10);
-    debounced;
-    debounced;
-    debounced;
+    debounced();
+    debounced();
+    debounced();
     setTimeout(function() {
       assert.equal(called, 1);
       done();
@@ -30,7 +30,7 @@ describe('debounce', function() {
     var debounced = debounce(function() {
       called++;
     }, 10);
-    debounced;
+    debounced();
     setTimeout(debounced, 5);
     setTimeout(debounced, 20);
     setTimeout(function() {
